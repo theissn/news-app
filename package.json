@@ -15,7 +15,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --fix",
-    "export": "next export -o /public"
+    "export": "next export -o public"
   },
   "devDependencies": {
     "eslint": "^5.8.0",
