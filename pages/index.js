@@ -1,19 +1,19 @@
 import React from 'react';
-import axios from 'axios';
+import { get } from '../api/fetch';
 import Layout from '../components/layout';
 
 const API_KEY = '2bdc18ea3e9b4fd690b1e1a98c3630a8';
 
 export default class extends React.Component {
   static async getInitialProps() {
-    return axios
-      .get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}`)
-      .then(res => ({
-        data: res.data,
-      }));
+    const data = await get('/top-headlines?country=us');
+    return {
+      data,
+    };
   }
 
   render() {
+    console.log(this.props);
     return (
       <Layout>
         <div className="uk-container">
@@ -23,8 +23,10 @@ export default class extends React.Component {
                 <div className="uk-card uk-card-default">
                   <div className="uk-card-media-top">
                     <img
-                      src={article.urlToImage || '//placehold.it/500x250?text=No Image'}
+                      className="my-class"
+                      data-src={article.urlToImage || '//placehold.it/500x250?text=No Image'}
                       alt=""
+                      uk-img="target: .my-class"
                     />
                   </div>
                   <div className="uk-card-body">
